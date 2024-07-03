@@ -1,10 +1,25 @@
+'use client';
+
+import { useCallback, useState } from 'react';
+import { upload } from 'thirdweb/storage';
+import { useDropzone } from 'react-dropzone';
+import client from '@/lib/utils/thirdweb';
+
 export default function Form() {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    console.log({ acceptedFiles });
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
   return (
-    <div>
-      <form>
-        <input type='file' placeholder='Drag and drop or upload file...' />
-        <button className='rounded-lg bg-stone-200 px-4 py-1 text-stone-950'>Upload to IPFS</button>
-      </form>
+    <div {...getRootProps()}>
+      <input {...getInputProps()} />
+      {isDragActive ? (
+        <p>Drop the files here ...</p>
+      ) : (
+        <p>Drag 'n' drop some files here, or click to select files</p>
+      )}
     </div>
   );
 }
