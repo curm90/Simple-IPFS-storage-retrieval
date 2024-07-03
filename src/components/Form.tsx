@@ -6,8 +6,9 @@ import { useDropzone } from 'react-dropzone';
 import client from '@/lib/utils/thirdweb';
 
 export default function Form() {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    console.log({ acceptedFiles });
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+    const uri = await upload({ client, files: acceptedFiles });
+    console.log({ acceptedFiles, uri });
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
