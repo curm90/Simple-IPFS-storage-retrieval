@@ -1,9 +1,9 @@
 import { createThirdwebClient } from 'thirdweb';
 
-const THIRDWEB_CLIENT_ID = process.env.THIRDWEB_CLIENT_ID;
+const NEXT_PUBLIC_THIRDWEB_CLIENT_ID = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID;
 
 const client = createThirdwebClient({
-  clientId: THIRDWEB_CLIENT_ID as string,
+  clientId: NEXT_PUBLIC_THIRDWEB_CLIENT_ID as string,
 });
 
 export default client;
