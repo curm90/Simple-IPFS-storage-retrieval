@@ -13,7 +13,9 @@ export default function Form() {
     async (acceptedFiles: File[]) => {
       const uris = await upload({ client, files: acceptedFiles });
       console.log({ acceptedFiles, uris });
-      setStoredUris(uris);
+
+      const urisArray = Array.isArray(uris) ? uris : [uris];
+      setStoredUris((prev) => [...prev, ...urisArray]);
     },
     [upload],
   );
